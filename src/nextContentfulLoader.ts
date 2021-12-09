@@ -67,6 +67,7 @@ export const contentfulLoader = (loaderProps: ImageLoaderProps, contentfulParams
   }
 
   delete adjustedContentfulParams['ar'];
+  if (typeof adjustedContentfulParams['h'] === 'undefined') delete adjustedContentfulParams['h'];
 
   return `${loaderProps.src}?${new URLSearchParams(adjustedContentfulParams as { [key: string]: string }).toString()}`;
 };

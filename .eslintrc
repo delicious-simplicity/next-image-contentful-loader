@@ -1,3 +1,4 @@
 {
-  "extends": ["@delicious-simplicity/eslint-config"]
+  "extends": ["@delicious-simplicity/eslint-config"],
+  "ignorePatterns": ["cjs/*", "dist/*", "esm/*", "types/*"]
 }

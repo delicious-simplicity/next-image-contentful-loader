@@ -4,7 +4,6 @@ import { parseAspectRatio } from './parseAspectRatio';
 
 export type ContentfulImageParams = {
   ar?: string;
-
   fm?: 'jpg' | 'png' | 'webp' | 'gif' | 'avif';
   fl?: 'progressive' | 'png8';
   w?: number;
@@ -68,6 +67,13 @@ export const contentfulLoader = (loaderProps: ImageLoaderProps, contentfulParams
 
   delete adjustedContentfulParams['ar'];
   if (typeof adjustedContentfulParams['h'] === 'undefined') delete adjustedContentfulParams['h'];
+
+  // remove width and height if requesting a gif
+  if (/\.gif$/gim.test(loaderProps.src)) {
+    delete adjustedContentfulParams['w'];
+    delete adjustedContentfulParams['h'];
+    delete adjustedContentfulParams['fit'];
+  }
 
   return `${loaderProps.src}?${new URLSearchParams(adjustedContentfulParams as { [key: string]: string }).toString()}`;
 };

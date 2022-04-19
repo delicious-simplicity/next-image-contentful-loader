@@ -15,10 +15,13 @@ jobs:
         with:
           node-version: 14.x
           registry-url: https://registry.npmjs.org/
+      - uses: pnpm/action-setup@v2.1.0
+        with:
+          version: 6.32.9
+          run_install: |
+            - args: [--frozen-lockfile]
 
       - name: Publish
-        run: |
-          yarn install --ignore-scripts
-          yarn publish
+        run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

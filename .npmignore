@@ -1,4 +1,6 @@
 .github
 .vscode
+
 .eslintrc
 .prettierrc
+jest.config.js

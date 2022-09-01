@@ -1,4 +1,4 @@
-import { ImageLoaderProps } from 'next/image';
+import type { ImageLoaderProps } from 'next/image';
 
 import { parseAspectRatio } from './parseAspectRatio';
 
@@ -25,6 +25,8 @@ export type ContentfulImageParams = {
   q?: number;
   bg?: string;
 };
+
+const defaultQuality = 75;
 
 export const contentfulLoader = (loaderProps: ImageLoaderProps, contentfulParams?: ContentfulImageParams) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -54,13 +56,13 @@ export const contentfulLoader = (loaderProps: ImageLoaderProps, contentfulParams
   if (contentfulParams) {
     adjustedContentfulParams = {
       ...contentfulParams,
-      q: loaderProps.quality || 100,
+      q: loaderProps.quality ? loaderProps.quality : contentfulParams.q ? contentfulParams.q : defaultQuality,
       w: loaderProps.width,
       h: contentfulParams.ar ? Math.round(loaderProps.width * parseAspectRatio(contentfulParams.ar)) : undefined,
     };
   } else {
     adjustedContentfulParams = {
-      q: loaderProps.quality || 100,
+      q: loaderProps.quality ? loaderProps.quality : defaultQuality,
       w: loaderProps.width,
     };
   }

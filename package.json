@@ -1,6 +1,6 @@
 {
   "name": "@delicious-simplicity/next-image-contentful-loader",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "repository": "https://github.com/delicious-simplicity/next-image-contentful-loader.git",
   "author": "Devin Metivier <devinmetivier@gmail.com>",
   "contributors": [
@@ -17,6 +17,7 @@
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "sideEffects": false,
   "files": [
     "cjs",
     "esm",
@@ -31,15 +32,19 @@
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
     "build:types": "tsc --d --declarationMap --declarationDir types",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
+    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "test": "jest"
   },
   "devDependencies": {
-    "@delicious-simplicity/eslint-config": "^1.0.3",
+    "@delicious-simplicity/eslint-config": "^1.1.0",
+    "@types/jest": "^29.0.3",
     "@types/node": "^17.0.23",
-    "@vercel/ncc": "^0.33.4",
-    "next": "^12.1.4",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "typescript": "^4.6.3"
+    "@vercel/ncc": "^0.34.0",
+    "jest": "^29.0.3",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-jest": "^29.0.2",
+    "typescript": "^4.8.3"
   }
 }

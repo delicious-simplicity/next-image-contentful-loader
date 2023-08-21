@@ -1,4 +1,7 @@
 {
   "extends": ["@delicious-simplicity/eslint-config"],
-  "ignorePatterns": ["cjs/*", "dist/*", "esm/*", "types/*"]
+  "ignorePatterns": ["cjs/*", "dist/*", "esm/*", "types/*"],
+  "paths": {
+    "vitest/*": ["node_modules/vitest/*"]
+  }
 }

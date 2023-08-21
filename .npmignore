@@ -3,4 +3,5 @@
 
 .eslintrc
 .prettierrc
-jest.config.js
+tsup.config.js
+vite.config.js

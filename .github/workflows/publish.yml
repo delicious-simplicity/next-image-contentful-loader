@@ -1,4 +1,4 @@
-name: Publish
+name: Release
 
 on:
   push:
@@ -6,22 +6,31 @@ on:
       - master
 
 jobs:
-  publish:
-    name: Publish to the NPM registry
+  release:
+    name: Release to the NPM registry
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          node-version: 14.x
-          registry-url: https://registry.npmjs.org/
-      - uses: pnpm/action-setup@v2.1.0
-        with:
-          version: 6.32.9
-          run_install: |
-            - args: [--frozen-lockfile]
+          fetch-depth: 0
 
-      - name: Publish
-        run: pnpm publish
+      - name: Use PNPM
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # Using custom token `GITHUB_TOKEN` with more access to avoid rate limiting
+      - name: Create Release
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          commit: "chore(release): 📦 version packages"
+          title: "chore(release): 📦  version packages"
+          publish: npx changeset publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

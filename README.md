@@ -1,3 +1,5 @@
+[made with 💜 by [DS]](https://www.delicious-simplicity.com/)
+
 # @delicious-simplicity/next-image-contentful-loader
 
 A comprehensive [Contentful](https://www.contentful.com/developers/docs/references/images-api) image loader for the [Next.js Image component](https://nextjs.org/docs/api-reference/next/image).
